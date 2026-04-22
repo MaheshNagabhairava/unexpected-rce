@@ -1,0 +1,11 @@
+node_modules/
+__pycache__/
+.pytest_cache/
+.next/
+*.pyc
+*.pyo
+*.zip
+*.log
+*.mp4
+.env
+.env.local

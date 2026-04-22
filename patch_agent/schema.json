@@ -1,0 +1,118 @@
+{
+    "type": "object",
+    "properties": {
+        "actions": {
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "const": "stop_server"
+                            },
+                            "reason": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "type",
+                            "reason"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "const": "code_edit"
+                            },
+                            "file": {
+                                "type": "string"
+                            },
+                            "edit": {
+                                "type": "object",
+                                "properties": {
+                                    "operation": {
+                                        "const": "replace"
+                                    },
+                                    "start_line": {
+                                        "type": "integer"
+                                    },
+                                    "end_line": {
+                                        "type": "integer"
+                                    },
+                                    "original_snippet": {
+                                        "type": "string"
+                                    },
+                                    "new_snippet": {
+                                        "type": "string"
+                                    },
+                                    "reason": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "operation",
+                                    "start_line",
+                                    "end_line",
+                                    "original_snippet",
+                                    "new_snippet",
+                                    "reason"
+                                ]
+                            }
+                        },
+                        "required": [
+                            "type",
+                            "file",
+                            "edit"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "const": "npm_install"
+                            },
+                            "packages": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "reason": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "type",
+                            "packages",
+                            "reason"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "const": "restart_server"
+                            },
+                            "command": {
+                                "type": "string"
+                            },
+                            "reason": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "type",
+                            "command",
+                            "reason"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "required": [
+        "actions"
+    ]
+}

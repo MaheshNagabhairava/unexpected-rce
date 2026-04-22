@@ -1,0 +1,36 @@
+{
+    "type": "object",
+    "properties": {
+        "action": {
+            "type": "string",
+            "enum": [
+                "display_to_user",
+                "call_patch_agent",
+                "clarify_request",
+                "out_of_scope"
+            ],
+            "description": "The action to take. Must be one of the enum values as a plain string."
+        },
+        "message": {
+            "type": "string",
+            "description": "Required for display_to_user, clarify_request, out_of_scope. The message to show the user."
+        },
+        "bug_description": {
+            "type": "string",
+            "description": "Required for call_patch_agent. The extracted/refined bug description."
+        },
+        "confidence": {
+            "type": "number",
+            "description": "Confidence score 0-1 for the classification decision."
+        },
+        "reasoning": {
+            "type": "string",
+            "description": "Brief explanation of why this action was chosen."
+        }
+    },
+    "required": [
+        "action",
+        "confidence",
+        "reasoning"
+    ]
+}

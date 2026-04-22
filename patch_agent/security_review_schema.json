@@ -1,0 +1,85 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "required": [
+        "approved",
+        "risk_level",
+        "findings"
+    ],
+    "properties": {
+        "approved": {
+            "type": "boolean",
+            "description": "Whether the code change is approved from a security perspective"
+        },
+        "risk_level": {
+            "type": "string",
+            "enum": [
+                "SAFE",
+                "LOW",
+                "MEDIUM",
+                "HIGH",
+                "CRITICAL"
+            ],
+            "description": "Overall security risk assessment"
+        },
+        "findings": {
+            "type": "array",
+            "description": "List of security issues found",
+            "items": {
+                "type": "object",
+                "required": [
+                    "category",
+                    "severity",
+                    "description",
+                    "location"
+                ],
+                "properties": {
+                    "category": {
+                        "type": "string",
+                        "enum": [
+                            "XSS",
+                            "SQL_INJECTION",
+                            "COMMAND_INJECTION",
+                            "SSRF",
+                            "DATA_EXFILTRATION",
+                            "PATH_TRAVERSAL",
+                            "UNSAFE_DESERIALIZATION",
+                            "HARDCODED_SECRETS",
+                            "AUTHENTICATION_BYPASS",
+                            "INSECURE_RANDOMNESS",
+                            "OTHER"
+                        ],
+                        "description": "Category of security vulnerability"
+                    },
+                    "severity": {
+                        "type": "string",
+                        "enum": [
+                            "INFO",
+                            "LOW",
+                            "MEDIUM",
+                            "HIGH",
+                            "CRITICAL"
+                        ],
+                        "description": "Severity of the finding"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Detailed description of the security issue"
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Where in the code the issue was found (file and snippet)"
+                    },
+                    "recommendation": {
+                        "type": "string",
+                        "description": "How to fix the security issue"
+                    }
+                }
+            }
+        },
+        "summary": {
+            "type": "string",
+            "description": "Overall summary of the security review"
+        }
+    }
+}

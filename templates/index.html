@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patch Agent - AI Autonomous Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <video class="header-video" autoplay loop muted playsinline>
+                    <source src="{{ url_for('static', filename='bot_idle.mp4') }}" type="video/mp4">
+                </video>
+                <h1>Patch Agent</h1>
+            </div>
+            <div class="header-actions">
+                <button class="btn-secondary" onclick="clearChat()">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 6h18M8 6V4a1 1 0 011-1h6a1 1 0 011 1v2m2 0v12a2 2 0 01-2 2H8a2 2 0 01-2-2V6h12z" />
+                    </svg>
+                    Clear Chat
+                </button>
+            </div>
+        </header>
+
+        <!-- Chat Container -->
+        <div class="chat-container">
+            <div class="messages" id="messages">
+                <!-- Welcome Message -->
+                <div class="message agent-message">
+                    <div class="message-avatar agent-avatar">
+                        <video class="avatar-video" autoplay loop muted playsinline>
+                            <source src="{{ url_for('static', filename='bot_idle.mp4') }}" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="message-content">
+                        <div class="message-header">
+                            <span class="message-sender">Patch Agent</span>
+                            <span class="message-time">Just now</span>
+                        </div>
+                        <div class="message-text">
+                            <p><strong>👋 Welcome to Patch Agent!</strong></p>
+                            <p>Helo Developer! I'm your Autonomous AI Patch Agent. I can help you fix bugs in your
+                                application.</p>
+                            <p>💡 <strong>How to use:</strong></p>
+                            <ul>
+                                <li>Describe the bug you want me to fix</li>
+                                <li>I'll analyze the code and propose a solution and I can fix it too</li>
+                            </ul>
+                            <p>What would you like me to help you with?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-container">
+                <form id="chatForm" onsubmit="sendMessage(event)">
+                    <div class="input-wrapper">
+                        <textarea id="messageInput" placeholder="Describe the bug you want to fix..." rows="1"
+                            onkeydown="handleKeyPress(event)"></textarea>
+                        <button type="submit" class="btn-send" id="sendButton">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+                            </svg>
+                            <span>Send</span>
+                        </button>
+                    </div>
+                </form>
+                <div class="input-hint">
+                    Press <kbd>Enter</kbd> to send, <kbd>Shift + Enter</kbd> for new line
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
